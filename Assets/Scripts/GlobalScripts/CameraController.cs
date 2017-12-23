@@ -5,10 +5,19 @@ public class CameraController : MonoBehaviour
 {
     [Range(0f,1f)]
     public float movementSpeed = 0.1f;
+    [Range(0f, 10f)]
+    public float zoomSpeed = 1f;
     [Range(0f,10f)]
     public float rotationSpeed = 4f;
     [Range(0f,1f)]
     public float smoothness = 0.85f;
+
+    public float minPositionX = 1f;
+    public float minPositionY = 1f;
+    public float minPositionZ = -10f;
+    public float maxPositionX = 20f;
+    public float maxPositionY = 10f;
+    public float maxPositionZ = 1f;
 
     Vector3 targetPosition;
     
@@ -28,9 +37,14 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if( Input.GetKey( KeyCode.W ) )
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f)
+            targetPosition += transform.forward * zoomSpeed;
+        if (Input.GetAxis("Mouse ScrollWheel") < 0f)
+            targetPosition -= transform.forward * zoomSpeed;
+
+        if ( Input.GetKey( KeyCode.W ) )
             targetPosition += transform.forward * movementSpeed;
-        if( Input.GetKey( KeyCode.A ) )
+        if ( Input.GetKey( KeyCode.A ) )
             targetPosition -= transform.right * movementSpeed;
         if( Input.GetKey( KeyCode.S ) )
             targetPosition -= transform.forward * movementSpeed;
@@ -51,7 +65,13 @@ public class CameraController : MonoBehaviour
         else
             Cursor.visible = true;
 
+        targetPosition.x = Mathf.Clamp(targetPosition.x, minPositionX, maxPositionX);
+        targetPosition.y = Mathf.Clamp(targetPosition.y, minPositionY, maxPositionY);
+        targetPosition.z = Mathf.Clamp(targetPosition.z, minPositionZ, maxPositionZ);
+
         transform.position = Vector3.Lerp( transform.position, targetPosition, ( 1.0f - smoothness ) );
         transform.rotation = Quaternion.Lerp( transform.rotation, targetRotation, ( 1.0f - smoothness ) );
+
+      
     }
 }

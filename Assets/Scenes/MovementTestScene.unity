@@ -286,8 +286,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 0.1
+  zoomSpeed: 1
   rotationSpeed: 4
   smoothness: 0.85
+  minPositionX: -10
+  minPositionY: 1
+  minPositionZ: -10
+  maxPositionX: 10
+  maxPositionY: 10
+  maxPositionZ: 1
   targetRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1001 &892984192
 Prefab:
