@@ -39,8 +39,6 @@ public static class SelectionRectangle {
         var max = Vector3.Max(v1, v2);
         min.z = camera.nearClipPlane;
         max.z = camera.farClipPlane;
-        //min.z = 0.0f;
-        //max.z = 1.0f;
 
         var bounds = new Bounds();
         bounds.SetMinMax(min, max);

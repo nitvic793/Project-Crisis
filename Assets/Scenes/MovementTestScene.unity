@@ -190,6 +190,7 @@ GameObject:
   - component: {fileID: 536780309}
   - component: {fileID: 536780308}
   - component: {fileID: 536780312}
+  - component: {fileID: 536780313}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -273,6 +274,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectionCirclePrefab: {fileID: 1947669761484732, guid: 8b42d5770eb43d74bb04d168d21703e9,
     type: 2}
+--- !u!114 &536780313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 536780307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecd23e3805e69b148b2adcf9a4decd68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 0.1
+  rotationSpeed: 4
+  smoothness: 0.85
+  targetRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1001 &892984192
 Prefab:
   m_ObjectHideFlags: 0
