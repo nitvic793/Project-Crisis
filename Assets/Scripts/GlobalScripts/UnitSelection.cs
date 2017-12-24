@@ -48,6 +48,7 @@ public class UnitSelection : MonoBehaviour {
                         selectedVehicle.GetComponent<Vehicle>().selectionCircle.transform.SetParent(selectedVehicle.transform, false);
                         selectedVehicle.GetComponent<Vehicle>().selectionCircle.transform.eulerAngles = new Vector3(90, 0, 0);
                     }
+                    selectedVehicle.GetComponent<Vehicle>().isSelected = true;
                 }
                 else if(hit.transform.tag == "Building")
                 {
