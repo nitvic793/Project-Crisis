@@ -5,4 +5,5 @@ using UnityEngine;
 public class Vehicle : MonoBehaviour {
 
     public GameObject selectionCircle;
+    public bool isSelected = false;
 }

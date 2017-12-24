@@ -36,12 +36,13 @@ public class UnitSelection : MonoBehaviour {
                 selectedObjects.Add(hit.transform.gameObject);
                 if (selectedVehicle.GetComponent<Vehicle>().selectionCircle == null)
                 {
-                    Debug.Log("Test");
                     selectedVehicle.GetComponent<Vehicle>().selectionCircle = Instantiate(selectionCirclePrefab);
                     selectedVehicle.GetComponent<Vehicle>().selectionCircle.transform.SetParent(selectedVehicle.transform, false);
                     selectedVehicle.GetComponent<Vehicle>().selectionCircle.transform.eulerAngles = new Vector3(90, 0, 0);
                 }
+                selectedVehicle.GetComponent<Vehicle>().isSelected = true;
             }
+            
         }
         
         // If we let go of the left mouse button, end selection
@@ -52,6 +53,7 @@ public class UnitSelection : MonoBehaviour {
             {
                 if (IsWithinSelectionBounds(selectableObject.gameObject))
                 {
+                    selectableObject.GetComponent<Vehicle>().isSelected = true;
                     selectedObjects.Add(selectableObject);
                 }
             }
