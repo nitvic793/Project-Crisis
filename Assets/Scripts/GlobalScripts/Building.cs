@@ -9,6 +9,8 @@ public class Building : MonoBehaviour {
 
     public Outline OutlineEffect;
 
+    public GameObject VehicleSpawnPrefab;
+
 	// Use this for initialization
 	void Start () {
         OutlineEffect = GetComponent<Outline>();

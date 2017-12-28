@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2455874834e6ef549be03aa50228ee88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectionCirclePrefab: {fileID: 1947669761484732, guid: 8b42d5770eb43d74bb04d168d21703e9,
+  selectionCirclePrefab: {fileID: 1819859806218210, guid: f2de62b1233c80a4da1a38a59e0fc746,
     type: 2}
 --- !u!124 &124679380884152094
 Behaviour:

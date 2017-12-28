@@ -113,6 +113,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsSelected: 0
   OutlineEffect: {fileID: 0}
+  VehicleSpawnPrefab: {fileID: 1080797717256842, guid: 33c44112c9f7a2c4f849e8b4d8f8f459,
+    type: 2}
 --- !u!136 &136469714536668366
 CapsuleCollider:
   m_ObjectHideFlags: 1
