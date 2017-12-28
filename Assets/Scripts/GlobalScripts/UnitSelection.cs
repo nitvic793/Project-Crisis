@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-public class UnitSelection : MonoBehaviour {
+public class UnitSelection : MonoBehaviour
+{
     bool isSelecting = false;
     Vector3 mousePositionBegin;
 
@@ -20,13 +21,12 @@ public class UnitSelection : MonoBehaviour {
             RaycastHit hit = new RaycastHit();
             isSelecting = true;
             mousePositionBegin = Input.mousePosition;
-            
+
             foreach (var selectableObject in GameObject.FindGameObjectsWithTag("Vehicle"))
             {
-                if (selectableObject.GetComponent<Vehicle>().selectionCircle != null)
+                if (selectableObject.GetComponent<Vehicle>().isSelected)
                 {
-                    Destroy(selectableObject.GetComponent<Vehicle>().selectionCircle.gameObject);
-                    selectableObject.GetComponent<Vehicle>().selectionCircle = null;
+                    selectableObject.GetComponent<Transform>().Find("SelectionCirclePrefab").gameObject.SetActive(false);
                 }
             }
 
@@ -41,26 +41,21 @@ public class UnitSelection : MonoBehaviour {
                 {
                     GameObject selectedVehicle = hit.transform.gameObject;
                     selectedObjects.Add(hit.transform.gameObject);
-                    if (selectedVehicle.GetComponent<Vehicle>().selectionCircle == null)
-                    {
-                        Debug.Log("Test");
-                        selectedVehicle.GetComponent<Vehicle>().selectionCircle = Instantiate(selectionCirclePrefab);
-                        selectedVehicle.GetComponent<Vehicle>().selectionCircle.transform.SetParent(selectedVehicle.transform, false);
-                        selectedVehicle.GetComponent<Vehicle>().selectionCircle.transform.eulerAngles = new Vector3(90, 0, 0);
-                    }
+                    Debug.Log("Test");
+                    hit.transform.Find("SelectionCirclePrefab").gameObject.SetActive(true);
                     selectedVehicle.GetComponent<Vehicle>().isSelected = true;
                 }
-                else if(hit.transform.tag == "Building")
+                else if (hit.transform.tag == "Building")
                 {
                     hit.transform.GetComponent<Building>().IsSelected = true;
                 }
             }
         }
-        
+
         // If we let go of the left mouse button, end selection
         if (Input.GetMouseButtonUp(0))
         {
-            
+
             foreach (var selectableObject in GameObject.FindGameObjectsWithTag("Vehicle"))
             {
                 if (IsWithinSelectionBounds(selectableObject.gameObject))
@@ -70,7 +65,7 @@ public class UnitSelection : MonoBehaviour {
                 }
             }
 
-#region Debug
+            #region Debug
             /*
             var sb = new StringBuilder();
             sb.AppendLine(string.Format("Selecting [{0}] Units", selectedObjects.Count));
@@ -78,7 +73,7 @@ public class UnitSelection : MonoBehaviour {
                 sb.AppendLine("-> " + selectedObject.gameObject.name);
             Debug.Log(sb.ToString());
             */
-#endregion
+            #endregion
             isSelecting = false;
         }
 
@@ -89,11 +84,10 @@ public class UnitSelection : MonoBehaviour {
             {
                 if (IsWithinSelectionBounds(selectableObject.gameObject))
                 {
-                    if (selectableObject.GetComponent<Vehicle>().selectionCircle == null)
+                    if (!selectableObject.GetComponent<Vehicle>().isSelected)
                     {
-                        selectableObject.GetComponent<Vehicle>().selectionCircle = Instantiate(selectionCirclePrefab);
-                        selectableObject.GetComponent<Vehicle>().selectionCircle.transform.SetParent(selectableObject.transform, false);
-                        selectableObject.GetComponent<Vehicle>().selectionCircle.transform.eulerAngles = new Vector3(90, 0, 0);
+                        selectableObject.GetComponent<Vehicle>().isSelected = true;
+                        selectableObject.GetComponent<Transform>().Find("SelectionCirclePrefab").gameObject.SetActive(true);
                     }
                 }
             }
