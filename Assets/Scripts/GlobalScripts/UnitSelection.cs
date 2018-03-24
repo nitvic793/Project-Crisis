@@ -17,20 +17,18 @@ public class UnitSelection : MonoBehaviour
         // If we press the left mouse button, begin selection and remember the location of the mouse
         if (Input.GetMouseButtonDown(0))
         {
-            selectedObjects.Clear();
+           
             RaycastHit hit = new RaycastHit();
             isSelecting = true;
             mousePositionBegin = Input.mousePosition;
 
             foreach (var selectableObject in GameObject.FindGameObjectsWithTag("Vehicle"))
             {
-                if (selectableObject.GetComponent<Vehicle>().isSelected)
-                {
-                    selectableObject.GetComponent<Transform>().Find("SelectionCirclePrefab").gameObject.SetActive(false);
-                }
+				selectableObject.GetComponent<Vehicle>().isSelected = false;
+				selectableObject.GetComponent<Transform>().Find("SelectionCirclePrefab").gameObject.SetActive(false);
             }
-
-            foreach (var selectableObject in GameObject.FindGameObjectsWithTag("Building"))
+			selectedObjects.Clear();
+			foreach (var selectableObject in GameObject.FindGameObjectsWithTag("Building"))
             {
                 selectableObject.GetComponent<Building>().IsSelected = false;
             }

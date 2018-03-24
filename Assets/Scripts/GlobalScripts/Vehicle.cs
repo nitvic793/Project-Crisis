@@ -6,4 +6,5 @@ public class Vehicle : MonoBehaviour {
 
     public GameObject selectionCircle;
     public bool isSelected = false;
+	public bool isMoving = false;
 }

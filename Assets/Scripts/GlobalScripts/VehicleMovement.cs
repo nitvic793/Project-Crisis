@@ -11,7 +11,7 @@ public class VehicleMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(1))
         {
             RaycastHit hit;
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit) && hit.transform.tag != "Vehicle")
@@ -20,8 +20,8 @@ public class VehicleMovement : MonoBehaviour {
                 {
                     if (vehicleUnit.GetComponent<Vehicle>().isSelected)
                     {
-                        //Move to target location
-                        vehicleUnit.GetComponent<VehicleController>().MoveToPoint(hit.point);
+						//Move to target location
+						vehicleUnit.GetComponent<VehicleController>().MoveToPoint(hit.point);
                         //Deselect
                         vehicleUnit.GetComponent<Vehicle>().isSelected = false;
                     }

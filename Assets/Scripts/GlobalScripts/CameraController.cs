@@ -27,12 +27,12 @@ public class CameraController : MonoBehaviour
 
     // Use this for initialization
     void Start()
-    {
-        targetPosition = transform.position;
-        targetRotation = transform.rotation;
-        targetRotationY = transform.localRotation.eulerAngles.y;
-        targetRotationX = transform.localRotation.eulerAngles.x;
-    }
+	{
+		targetPosition = transform.position;
+		targetRotation = transform.rotation;
+		targetRotationY = transform.localRotation.eulerAngles.y;
+		targetRotationX = transform.localRotation.eulerAngles.x;
+	}
 
     // Update is called once per frame
     void Update()
